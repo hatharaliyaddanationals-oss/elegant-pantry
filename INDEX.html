@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ELEGANT PANTRY | Sapphire Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif;
+        }
+
+        /* New Theme: Black, Silver, Blue — No Gold, No Neon */
+        body {
+            background: #0a0c10;
+            background-image: radial-gradient(circle at 30% 20%, rgba(0, 100, 255, 0.05) 0%, #03060c 100%);
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+
+        /* Blue & Silver Accents */
+        .blue-text {
+            color: #3b82f6;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .silver-text {
+            color: #cbd5e1;
+        }
+
+        .navbar {
+            background: rgba(8, 12, 18, 0.96);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #3b82f6;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 0 0 1px rgba(59,130,246,0.25);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #3b82f6 0%, #94a3b8 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 6px rgba(59,130,246,0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.3s;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+            border-bottom: 1px solid #3b82f6;
+            text-shadow: 0 0 6px rgba(59,130,246,0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 2px solid #3b82f6;
+            color: #3b82f6;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 0.8rem 2rem;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: 0.3s;
+            backdrop-filter: blur(4px);
+            background-color: rgba(0,0,0,0.4);
+            letter-spacing: 1px;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: #3b82f6;
+            color: #ffffff;
+            box-shadow: 0 0 14px rgba(59,130,246,0.5);
+            border-color: #60a5fa;
+            text-shadow: none;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .product-card {
+            background: #0f1219;
+            background: linear-gradient(145deg, #11161f 0%, #0a0d12 100%);
+            border-radius: 28px;
+            padding: 1.2rem;
+            border: 1px solid #2a3342;
+            border-top: 1px solid rgba(59,130,246,0.5);
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(148,163,184,0.1);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px black, 0 0 0 1px #3b82f6;
+            border-color: #3b82f6;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid #2d3748;
+            background: #131823;
+            transition: all 0.2s;
+        }
+
+        .res-badge {
+            font-size: 0.7rem;
+            color: #60a5fa;
+            margin-top: 8px;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .upload-label {
+            display: inline-block;
+            background: #1e293b;
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            padding: 6px 16px;
+            border-radius: 40px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+            border: 1px solid #475569;
+        }
+
+        .upload-label:hover {
+            background: #3b82f6;
+            color: #ffffff;
+            border-color: #60a5fa;
+            box-shadow: 0 0 8px rgba(59,130,246,0.4);
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 18px 0 8px;
+        }
+
+        .cart-btn, .buy-btn {
+            border: none;
+            padding: 8px 24px;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        .cart-btn {
+            background: #1e293b;
+            color: #60a5fa;
+            border: 1px solid #3b82f6;
+            box-shadow: none;
+        }
+
+        .buy-btn {
+            background: #3b82f6;
+            color: #ffffff;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .cart-btn:hover, .buy-btn:hover {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
+
+        .cart-btn:hover {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #0f172a;
+            border: 1px solid #3b82f6;
+            border-radius: 32px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 25px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.4);
+        }
+
+        .modal-content h3 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 1rem 0;
+            background: #1e293b;
+            border: 1px solid #94a3b8;
+            color: #e2e8f0;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            text-align: center;
+        }
+
+        .modal-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .modal-btn.cancel {
+            background: #334155;
+            color: #cbd5e1;
+        }
+
+        .error-msg {
+            color: #f87171;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .about-section, .contact-section {
+            background: #0f172acc;
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 48px;
+            margin-top: 2rem;
+            border: 1px solid #3b82f6;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .about-section h2, .contact-section h2 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #3b82f6;
+            margin-top: 3rem;
+            color: #94a3b8;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .section-page {
+            display: none;
+            animation: fadeSlide 0.4s ease;
+        }
+
+        .active-section {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .tab-btn {
+                font-size: 1rem;
+                padding: 0.5rem 1.2rem;
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #3b82f6;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 9999;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+            animation: fadeOut 2.2s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translateY(0);}
+            70% { opacity: 1;}
+            100% { opacity: 0; transform: translateY(20px); visibility: hidden;}
+        }
+
+        .contact-section p span {
+            color: #3b82f6;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">✦ ELEGANT PANTRY ✦</div>
+    <div class="nav-links">
+        <a data-page="home">HOME</a>
+        <a data-page="about">ABOUT</a>
+        <a data-page="contact">CONTACT</a>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- HOME SECTION -->
+    <div id="home-section" class="section-page active-section">
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="pantry">🍽️ PANTRY</button>
+            <button class="tab-btn" data-tab="kitchen">🔪 KITCHEN</button>
+            <button class="tab-btn" data-tab="pantry-kitchen">✨ PANTRY OR KITCHEN ✨</button>
+        </div>
+
+        <div id="pantry-tab" class="tab-content active-tab">
+            <div class="gallery" id="pantry-gallery"></div>
+        </div>
+        <div id="kitchen-tab" class="tab-content" style="display:none;">
+            <div class="gallery" id="kitchen-gallery"></div>
+        </div>
+        <div id="pantry-kitchen-tab" class="tab-content" style="display:none;">
+            <div class="gallery" id="pantrykitchen-gallery"></div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <div id="about-section" class="section-page">
+        <div class="about-section">
+            <h2>🌟 ABOUT ELEGANT PANTRY 🌟</h2>
+            <p>Midnight elegance meets azure sophistication. Premium storage solutions for your pantry and kitchen, all displayed in <strong>500x500 resolution</strong> for absolute consistency.</p>
+            <p>💎 Secure system: Password required to change images (never displayed anywhere).</p>
+            <p>✨ Click "BUY NOW" to order directly via WhatsApp with our dedicated team.</p>
+            <p style="margin-top:12px;"><span style="color:#60a5fa;">✦ Black · Silver · Blue — The Sapphire Standard ✦</span></p>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <div id="contact-section" class="section-page">
+        <div class="contact-section">
+            <h2>📞 CONTACT US</h2>
+            <p>📧 Email: sapphire@elegantpantry.com</p>
+            <p>📱 WhatsApp / Call: <span>0779186182</span></p>
+            <p>🌟 Click BUY NOW on any product to send an instant WhatsApp message to our support team.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <span>✦ ELEGANT PANTRY — SAPPHIRE COLLECTION | All images 500x500 ✦</span><br>
+    <small>Password protected upload | Buy Now sends WhatsApp to +94779186182 | Black · Silver · Blue</small>
+</footer>
+
+<!-- PASSWORD MODAL (Hidden Password, never visible in UI) -->
+<div id="passwordModal" class="modal">
+    <div class="modal-content">
+        <h3>🔒 Admin Authentication</h3>
+        <input type="password" id="modalPassword" placeholder="Enter master key" autocomplete="off">
+        <div>
+            <button class="modal-btn" id="modalConfirm">Confirm</button>
+            <button class="modal-btn cancel" id="modalCancel">Cancel</button>
+        </div>
+        <div id="modalError" class="error-msg"></div>
+    </div>
+</div>
+
+<script>
+    // ---------- RESIZE IMAGE TO EXACT 500x500 (high quality) ----------
+    function resizeImageTo500(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 500;
+                    canvas.height = 500;
+                    // Cover & center strategy to fill 500x500 while preserving aspect ratio
+                    const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+                    const x = (canvas.width / 2) - (img.width / 2) * scale;
+                    const y = (canvas.height / 2) - (img.height / 2) * scale;
+                    ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+                    const resizedDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+                    resolve(resizedDataUrl);
+                };
+                img.onerror = () => reject(new Error('Image load failed'));
+                img.src = e.target.result;
+            };
+            reader.onerror = () => reject(new Error('File read failed'));
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // ---------- DATA STRUCTURE ----------
+    let galleries = {
+        pantry: [],
+        kitchen: [],
+        pantrykitchen: []
+    };
+
+    const DEFAULT_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'%3E%3Crect width='500' height='500' fill='%230f1219'/%3E%3Crect x='50' y='50' width='400' height='400' fill='none' stroke='%233b82f6' stroke-width='1.8' stroke-dasharray='8 6'/%3E%3Ctext x='50%25' y='45%25' font-size='20' fill='%2394a3b8' text-anchor='middle' dy='.3em' font-family='monospace'%3E500x500%3C/text%3E%3Ctext x='50%25' y='60%25' font-size='14' fill='%2360a5fa' text-anchor='middle'%3EClick to upload%3C/text%3E%3C/svg%3E";
+
+    function initGalleries() {
+        for(let i=1; i<=10; i++) {
+            galleries.pantry.push({ id: `pantry_${i}`, src: DEFAULT_PLACEHOLDER, alt: `Pantry Elegance ${i}` });
+            galleries.kitchen.push({ id: `kitchen_${i}`, src: DEFAULT_PLACEHOLDER, alt: `Kitchen Masterwork ${i}` });
+            galleries.pantrykitchen.push({ id: `pantrykitchen_${i}`, src: DEFAULT_PLACEHOLDER, alt: `Hybrid Artifact ${i}` });
+        }
+    }
+
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerText = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2200);
+    }
+
+    function renderGallery(containerId, itemsArray, categoryKey) {
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        container.innerHTML = '';
+        itemsArray.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = item.alt;
+            img.className = 'product-img';
+            
+            const resSpan = document.createElement('div');
+            resSpan.className = 'res-badge';
+            resSpan.innerText = '🔷 500x500 px | Sapphire Edition 🔷';
+            
+            const uploadWrapper = document.createElement('div');
+            uploadWrapper.style.margin = '6px 0';
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            fileInput.style.display = 'none';
+            const uniqueId = `file-${categoryKey}-${idx}-${Date.now()}-${Math.random()}`;
+            fileInput.id = uniqueId;
+            const uploadBtn = document.createElement('label');
+            uploadBtn.htmlFor = uniqueId;
+            uploadBtn.innerText = '🔐 Change Image (Password Protected)';
+            uploadBtn.className = 'upload-label';
+            
+            fileInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if(!file) return;
+                const isAuth = await askPassword();
+                if(!isAuth) {
+                    fileInput.value = '';
+                    showToast('⛔ Access denied: invalid password');
+                    return;
+                }
+                try {
+                    const resizedUrl = await resizeImageTo500(file);
+                    item.src = resizedUrl;
+                    img.src = resizedUrl;
+                    saveGalleriesToLocal();
+                    showToast('✓ Image updated to 500x500 (Blue collection)');
+                } catch(err) {
+                    alert('Failed to process image. Please try again.');
+                }
+                fileInput.value = '';
+            });
+            
+            uploadWrapper.appendChild(fileInput);
+            uploadWrapper.appendChild(uploadBtn);
+            
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'product-actions';
+            const cartBtn = document.createElement('button');
+            cartBtn.innerText = '🛒 CART';
+            cartBtn.className = 'cart-btn';
+            cartBtn.onclick = () => showToast(`✨ "${item.alt}" added to your cart! ✨`);
+            
+            const buyBtn = document.createElement('button');
+            buyBtn.innerText = '💎 BUY NOW';
+            buyBtn.className = 'buy-btn';
+            buyBtn.onclick = () => {
+                const phone = "0779186182";
+                const message = `Hello! I am interested in purchasing this product:%0A🛍️ ${item.alt} (${categoryKey.toUpperCase()} collection - Item #${idx+1})%0A🌟 Elegant Pantry Sapphire — 500x500 quality`;
+                window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+            };
+            actionsDiv.appendChild(cartBtn);
+            actionsDiv.appendChild(buyBtn);
+            
+            const numberSpan = document.createElement('div');
+            numberSpan.style.fontSize = '0.75rem';
+            numberSpan.style.marginTop = '8px';
+            numberSpan.style.color = '#60a5fa';
+            numberSpan.style.letterSpacing = '0.5px';
+            numberSpan.innerText = `#${idx+1} of 10 | Signature Series`;
+            
+            card.appendChild(img);
+            card.appendChild(resSpan);
+            card.appendChild(uploadWrapper);
+            card.appendChild(actionsDiv);
+            card.appendChild(numberSpan);
+            container.appendChild(card);
+        });
+    }
+    
+    // ---------- PASSWORD HANDLER (Hidden, never shown anywhere) ----------
+    // Password remains "Gihan" (never exposed in UI)
+    function askPassword() {
+        return new Promise((resolve) => {
+            const modal = document.getElementById('passwordModal');
+            const input = document.getElementById('modalPassword');
+            const errorDiv = document.getElementById('modalError');
+            const confirmBtn = document.getElementById('modalConfirm');
+            const cancelBtn = document.getElementById('modalCancel');
+            
+            input.value = '';
+            errorDiv.innerText = '';
+            modal.style.display = 'flex';
+            
+            const cleanUp = () => {
+                modal.style.display = 'none';
+                confirmBtn.removeEventListener('click', confirmHandler);
+                cancelBtn.removeEventListener('click', cancelHandler);
+                input.removeEventListener('keypress', keyHandler);
+            };
+            
+            const confirmHandler = () => {
+                const pwd = input.value.trim();
+                // Password: "Gihan" - never printed or visible in any frontend element
+                if(pwd === "Gihan") {
+                    cleanUp();
+                    resolve(true);
+                } else {
+                    errorDiv.innerText = '❌ Incorrect password. Access denied.';
+                    input.value = '';
+                    resolve(false);
+                    setTimeout(() => {
+                        if(modal.style.display === 'flex') cleanUp();
+                    }, 900);
+                }
+            };
+            
+            const cancelHandler = () => {
+                cleanUp();
+                resolve(false);
+            };
+            
+            const keyHandler = (e) => {
+                if(e.key === 'Enter') confirmHandler();
+            };
+            
+            confirmBtn.addEventListener('click', confirmHandler);
+            cancelBtn.addEventListener('click', cancelHandler);
+            input.addEventListener('keypress', keyHandler);
+        });
+    }
+    
+    function saveGalleriesToLocal() {
+        const toStore = {
+            pantry: galleries.pantry,
+            kitchen: galleries.kitchen,
+            pantrykitchen: galleries.pantrykitchen
+        };
+        localStorage.setItem('elegant_pantry_sapphire_500', JSON.stringify(toStore));
+    }
+    
+    function loadGalleriesFromLocal() {
+        const stored = localStorage.getItem('elegant_pantry_sapphire_500');
+        if(stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if(parsed.pantry && parsed.pantry.length === 10) galleries.pantry = parsed.pantry;
+                if(parsed.kitchen && parsed.kitchen.length === 10) galleries.kitchen = parsed.kitchen;
+                if(parsed.pantrykitchen && parsed.pantrykitchen.length === 10) galleries.pantrykitchen = parsed.pantrykitchen;
+            } catch(e) {}
+        }
+    }
+    
+    function renderAllGalleries() {
+        renderGallery('pantry-gallery', galleries.pantry, 'pantry');
+        renderGallery('kitchen-gallery', galleries.kitchen, 'kitchen');
+        renderGallery('pantrykitchen-gallery', galleries.pantrykitchen, 'pantrykitchen');
+    }
+    
+    function switchTab(tabId) {
+        document.getElementById('pantry-tab').style.display = 'none';
+        document.getElementById('kitchen-tab').style.display = 'none';
+        document.getElementById('pantry-kitchen-tab').style.display = 'none';
+        if(tabId === 'pantry') document.getElementById('pantry-tab').style.display = 'block';
+        if(tabId === 'kitchen') document.getElementById('kitchen-tab').style.display = 'block';
+        if(tabId === 'pantry-kitchen') document.getElementById('pantry-kitchen-tab').style.display = 'block';
+        
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            if(btn.getAttribute('data-tab') === tabId) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+    
+    function switchPage(pageId) {
+        document.querySelectorAll('.section-page').forEach(sec => sec.classList.remove('active-section'));
+        if(pageId === 'home') document.getElementById('home-section').classList.add('active-section');
+        if(pageId === 'about') document.getElementById('about-section').classList.add('active-section');
+        if(pageId === 'contact') document.getElementById('contact-section').classList.add('active-section');
+    }
+    
+    // Event Listeners
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const page = link.getAttribute('data-page');
+            switchPage(page);
+        });
+    });
+    
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            switchTab(btn.getAttribute('data-tab'));
+        });
+    });
+    
+    // Initialization
+    initGalleries();
+    loadGalleriesFromLocal();
+    renderAllGalleries();
+    switchTab('pantry');
+    
+    window.addEventListener('beforeunload', () => saveGalleriesToLocal());
+    
+    console.log("ELEGANT PANTRY — Black, Silver & Blue Theme (Gold removed) | Password: Gihan (hidden) | 500x500 Resize Active");
+</script>
+</body>
+</html>
